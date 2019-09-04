@@ -1,5 +1,14 @@
 classdef Pipe
     properties
+        iteration
+        id_inlet
+        id_outlet
+        id_zone
+        time_step
+        matrix_size
+        matrix_coefficients
+        right_hand_side_vector        
+        
         %input
         specific_heat_capacity
         density
@@ -7,6 +16,7 @@ classdef Pipe
         density_fluid
         temperature_inlet
         temperature_outlet
+        temperature_zone
         mass_flow_rate
         heat_transfer_coefficient_inner
         heat_transfer_coefficient_outer
@@ -23,14 +33,18 @@ classdef Pipe
     end
     
     methods
-        function obj = Pipe(specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, temperature_inlet, temperature_outlet, mass_flow_rate,heat_transfer_coefficient_inner,heat_transfer_coefficient_outer,thermal_conductivity,radius_inner,radius_outer,length)
+        function obj = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, mass_flow_rate,heat_transfer_coefficient_inner,heat_transfer_coefficient_outer,thermal_conductivity,radius_inner,radius_outer,length)
             if nargin > 0
+                obj.id_inlet = id_inlet;
+                obj.id_outlet = id_outlet;
+                obj.id_zone = id_zone;
+                obj.time_step = solver.time_step;
+                obj.matrix_size = solver.matrix_size;
+
                 obj.specific_heat_capacity = specific_heat_capacity;
                 obj.density = density;
                 obj.specific_heat_capacity_fluid = specific_heat_capacity_fluid;
                 obj.density_fluid = density_fluid;
-                obj.temperature_inlet = temperature_inlet;
-                obj.temperature_outlet = temperature_outlet;
                 obj.mass_flow_rate = mass_flow_rate;
                 obj.heat_transfer_coefficient_inner = heat_transfer_coefficient_inner;
                 obj.heat_transfer_coefficient_outer = heat_transfer_coefficient_outer;
@@ -38,6 +52,13 @@ classdef Pipe
                 obj.radius_inner = radius_inner;
                 obj.radius_outer = radius_outer;
                 obj.length = length;
+                
+                obj.iteration = 0;
+                obj.matrix_coefficients = zeros(1,solver.matrix_size);
+                obj.right_hand_side_vector = 0;
+                obj.temperature_inlet = solver.temperatures(obj.id_inlet);
+                obj.temperature_outlet = solver.temperatures(obj.id_outlet);
+                obj.temperature_zone = solver.temperatures(obj.id_zone);            
                 
                 % calculation
                 obj.surface_inner = obj.calculate_surface_inner();
@@ -68,18 +89,29 @@ classdef Pipe
         end
         
         % coefficient of inlet temperature of pipe
-        function c = c_ti(obj, dt)
-            c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)/(2*dt)-obj.mass_flow_rate*obj.specific_heat_capacity_fluid+obj.heat_transfer_coefficient*obj.surface_inner/2;
+        function c = c_ti(obj)
+            c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)/(2*obj.time_step)-obj.mass_flow_rate*obj.specific_heat_capacity_fluid+obj.heat_transfer_coefficient*obj.surface_inner/2;
         end
         
         % coefficient of outlet temperature of pipe
-        function c = c_to(obj, dt)
-            c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)/(2*dt)+obj.mass_flow_rate*obj.specific_heat_capacity_fluid+obj.heat_transfer_coefficient*obj.surface_inner/2;
+        function c = c_to(obj)
+            c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)/(2*obj.time_step)+obj.mass_flow_rate*obj.specific_heat_capacity_fluid+obj.heat_transfer_coefficient*obj.surface_inner/2;
         end
         
         % right-hand coefficient of pipe
-        function c = c_r(obj, dt, temperature_environment)
-            c = obj.heat_transfer_coefficient*obj.surface_inner*temperature_environment + (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)*(obj.temperature_inlet+obj.temperature_outlet)/(2*dt);
+        function c = c_r(obj)
+            c = obj.heat_transfer_coefficient*obj.surface_inner*obj.temperature_zone + (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)*(obj.temperature_inlet+obj.temperature_outlet)/(2*obj.time_step);
+        end
+        
+        % create matrix of coefficients and right-hand side vector
+        function obj = create(obj, temperatures)
+            obj.iteration = obj.iteration + 1;
+            obj.temperature_inlet = temperatures(obj.id_inlet);
+            obj.temperature_outlet = temperatures(obj.id_outlet);            
+            obj.matrix_coefficients = zeros(1,obj.matrix_size);
+            obj.right_hand_side_vector = obj.c_r();
+            obj.matrix_coefficients(obj.id_inlet) = obj.c_ti();
+            obj.matrix_coefficients(obj.id_outlet) = obj.c_to();
         end
 
     end
