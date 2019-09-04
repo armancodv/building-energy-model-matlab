@@ -2,6 +2,8 @@
 It is a small software which is developed by MATLAB for modeling the energy system of a building or a HVAC system.
 
 ## Classes
+### Boiler
+<img src="https://latex.codecogs.com/gif.latex?(m_b C_b+m_(b,f) C_f)(dT ̅_b)/dt=E ̇_(h,r)+m ̇_f C_f (T_(b,i)-T_(b,o) )">
 
 ## License
 BSD 2-Clause License
