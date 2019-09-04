@@ -3,7 +3,7 @@ It is a small software which is developed by MATLAB for modeling the energy syst
 
 ## Classes
 ### Boiler
-<img src="https://latex.codecogs.com/gif.latex?(m_b C_b+m_(b,f) C_f)(dT ̅_b)/dt=E ̇_(h,r)+m ̇_f C_f (T_(b,i)-T_(b,o) )">
+<img src="https://latex.codecogs.com/gif.latex?(m_b%20C_b+m_(b,f)%20C_f)(dT%20%CC%85_b)/dt=E%20%CC%87_(h,r)+m%20%CC%87_f%20C_f%20(T_(b,i)-T_(b,o)%20)">
 
 ## License
 BSD 2-Clause License
