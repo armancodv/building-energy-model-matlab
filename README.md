@@ -31,7 +31,28 @@ Descritized Equation of a Boiler:
 | *b,o* | Boiler Outlet |
 
 #### Code ####
-
+Properties
+```matlab
+    properties
+        iteration
+        id_inlet
+        id_outlet
+        time_step
+        matrix_size
+        matrix_coefficients
+        right_hand_side_vector
+        
+        specific_heat_capacity
+        mass
+        specific_heat_capacity_fluid
+        mass_fluid
+        power
+        temperature_inlet
+        temperature_outlet
+        mass_flow_rate
+        status
+    end
+```
 
 ## License ##
 BSD 2-Clause License
