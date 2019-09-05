@@ -1,4 +1,4 @@
-# energy-building-matlab #
+# Energy Model of Building (MATLAB) #
 It is a small software which is developed by MATLAB for modeling the energy system of a building or a HVAC system.
 
 ## Method of Solution ##
