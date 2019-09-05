@@ -14,6 +14,7 @@ Descritized Equation of a Boiler:
 ![Alt text](documents/boiler/eq2.png "Descritized Equation of a Boiler")
 
 Variables
+
 | Symbols | Description | Unit |
 | --- | --- | --- |
 | *m* | Mass | *kg* |
