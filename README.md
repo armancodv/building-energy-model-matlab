@@ -20,7 +20,7 @@ In this code, the temperatures are considered variables of the problem, which ar
 | *m* | Mass | *kg* |
 | *C* | Specific Heat Capacity | *J/(K.kg)* |
 | *T* | Temperature | *K* |
-| *E<sup>.</sup>* | Energy Rate | *W* |
+| *E.* | Energy Rate | *W* |
 
 #### Code
 
