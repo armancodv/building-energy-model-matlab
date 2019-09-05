@@ -13,7 +13,7 @@ In this code, the temperatures are considered variables of the problem, which ar
 ##### Descritized Equation of a Boiler
 ![Alt text](documents/boiler/eq2.png "Descritized Equation of a Boiler")
 
-##### Variables
+#### Variables
 
 | Symbol | Description | Unit |
 | --- | --- | --- |
@@ -21,6 +21,14 @@ In this code, the temperatures are considered variables of the problem, which ar
 | *C* | Specific Heat Capacity | *J/(K.kg)* |
 | *T* | Temperature | *K* |
 | *E.* | Energy Rate | *W* |
+
+| Subscript | Description |
+| --- | --- |
+| *b* | Boiler |
+| *f* | fluid |
+| *b,f* | Fluid inside Boiler |
+| *b,i* | Boiler Inlet |
+| *b,o* | Boiler Outlet |
 
 #### Code
 
