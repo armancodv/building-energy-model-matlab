@@ -7,19 +7,20 @@ In this code, the temperatures are considered variables of the problem, which ar
 ## Classes
 ### Boiler
 #### Equations
-Energy Equation of a Boiler:
+##### Energy Equation of a Boiler
 ![Alt text](documents/boiler/eq1.png "Energy Equation of a Boiler")
 
-Descritized Equation of a Boiler:
+##### Descritized Equation of a Boiler
 ![Alt text](documents/boiler/eq2.png "Descritized Equation of a Boiler")
 
-Variables
+##### Variables
 
-| Symbols | Description | Unit |
+| Symbol | Description | Unit |
 | --- | --- | --- |
 | *m* | Mass | *kg* |
 | *C* | Specific Heat Capacity | *J/(K.kg)* |
 | *T* | Temperature | *K* |
+| *E<sup>.</sup>* | Energy Rate | *W* |
 
 #### Code
 
