@@ -31,11 +31,24 @@ Descritized Equation of a Boiler:
 | *b,o* | Boiler Outlet |
 
 #### Code ####
-Properties
+Construction
 ```matlab
-function obj = Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, power, mass_flow_rate, status)
-end
+Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, power, mass_flow_rate, status)
 ```
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id_inlet` | Boiler Inlet ID | `integer` (incremental) | - |
+| `id_outlet` | Boiler Outlet ID | `integer` (incremental) | - |
+| `solver` | Class of the Solver | `solver` | - |
+| `specific_heat_capacity` | Specific Heat Capacity of the Boiler (without fluid) | `double` | *J/(K.kg)* |
+| `mass` | Mass of the Boiler (without fluid) | `double` | *kg* |
+| `specific_heat_capacity_fluid` | Specific Heat Capacity of the Fluid | `double` | *J/(K.kg)* |
+| `mass_fluid` | Mass of Fluid inside the Boiler | `double` | *kg* |
+| `power` | Power of the Boiler | `double` | *W* |
+| `mass_flow_rate` | Mass Flow Rate of the Boiler | `double` | *kg/s* |
+| `status` | Status of the Boiler (ON/OFF) | `boolean` | - |
+
+
 
 ## License ##
 BSD 2-Clause License
