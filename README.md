@@ -1,19 +1,19 @@
-# energy-building-matlab
+# energy-building-matlab #
 It is a small software which is developed by MATLAB for modeling the energy system of a building or a HVAC system.
 
-## Method of Solution
+## Method of Solution ##
 In this code, the temperatures are considered variables of the problem, which are solved implicitly by solving a system of linear equations based on energy equations of each element.
 
-## Classes
-### Boiler
-#### Equations
-##### Energy Equation of a Boiler
+## Classes ##
+### Boiler ###
+#### Equations ####
+Energy Equation of a Boiler:
 ![Alt text](documents/boiler/eq1.png "Energy Equation of a Boiler")
 
-##### Descritized Equation of a Boiler
+Descritized Equation of a Boiler:
 ![Alt text](documents/boiler/eq2.png "Descritized Equation of a Boiler")
 
-#### Variables
+#### Variables ####
 
 | Symbol | Description | Unit |
 | --- | --- | --- |
@@ -30,10 +30,10 @@ In this code, the temperatures are considered variables of the problem, which ar
 | *b,i* | Boiler Inlet |
 | *b,o* | Boiler Outlet |
 
-#### Code
+#### Code ####
 
 
-## License
+## License ##
 BSD 2-Clause License
 
 Copyright (c) 2019, Armanco
