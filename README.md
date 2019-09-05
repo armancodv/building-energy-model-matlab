@@ -7,10 +7,10 @@ In this code, the temperatures are considered variables of the problem, which ar
 ## Classes ##
 ### Boiler ###
 #### Equations ####
-Energy Equation of a Boiler:
+##### Energy Equation of a Boiler #####
 ![Alt text](documents/boiler/eq1.png "Energy Equation of a Boiler")
 
-Descritized Equation of a Boiler:
+##### Descritized Equation of a Boiler #####
 ![Alt text](documents/boiler/eq2.png "Descritized Equation of a Boiler")
 
 #### Variables ####
@@ -31,14 +31,15 @@ Descritized Equation of a Boiler:
 | *b,o* | Boiler Outlet |
 
 #### Code ####
-Construction
+##### Construction ######
 ```matlab
 Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, power, mass_flow_rate, status)
 ```
+
 | Input | Description | Type | Unit |
 | --- | --- | --- | --- |
-| `id_inlet` | Boiler Inlet ID | `integer` (incremental) | - |
-| `id_outlet` | Boiler Outlet ID | `integer` (incremental) | - |
+| `id_inlet` | Boiler Inlet ID | `integer` | - |
+| `id_outlet` | Boiler Outlet ID | `integer` | - |
 | `solver` | Class of the Solver | `solver` | - |
 | `specific_heat_capacity` | Specific Heat Capacity of the Boiler (without fluid) | `double` | *J/(K.kg)* |
 | `mass` | Mass of the Boiler (without fluid) | `double` | *kg* |
@@ -48,6 +49,10 @@ Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_
 | `mass_flow_rate` | Mass Flow Rate of the Boiler | `double` | *kg/s* |
 | `status` | Status of the Boiler (ON/OFF) | `boolean` | - |
 
+##### Create Matrix #####
+```matlab
+create(temperatures)
+```
 
 
 ## License ##
