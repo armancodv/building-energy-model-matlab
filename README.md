@@ -8,11 +8,7 @@ In this code, the temperatures are considered variables of the problem, which ar
 
 ### Boiler ###
 #### Equations ####
-##### Energy Equation of a Boiler #####
-![Alt text](docs/boiler/eq1.png "Energy Equation of a Boiler")
-
-##### Descritized Equation of a Boiler #####
-![Alt text](docs/boiler/eq2.png "Descritized Equation of a Boiler")
+![Equations](docs/boiler/eqs.png)
 
 #### Variables ####
 
@@ -57,11 +53,7 @@ create(temperatures)
 
 ### Pipe ###
 #### Equations ####
-##### Energy Equation of a Pipe #####
-![Alt text](docs/pipe/eq1.png "Energy Equation of a Pipe")
-
-##### Descritized Equation of a Pipe #####
-![Alt text](docs/pipe/eq2.png "Descritized Equation of a Pipe")
+![Equations](docs/pipe/eqs.png)
 
 #### Variables ####
 
@@ -79,8 +71,8 @@ create(temperatures)
 | *t,f* | Fluid inside Pipe |
 | *t,i* | Pipe Inlet |
 | *t,o* | Pipe Outlet |
-| *t,in* | Pipe Inside |
-| *t,out* | Pipe Outside |
+| *t,in* | Pipe Inner Side |
+| *t,out* | Pipe Outer Side |
 
 #### Code ####
 ##### Construction ######
@@ -112,13 +104,10 @@ create(temperatures)
 ```
 
 
+
 ### Radiator ###
 #### Equations ####
-##### Energy Equation of a Radiator #####
-![Alt text](docs/radiator/eq1.png "Energy Equation of a Radiator")
-
-##### Descritized Equation of a Radiator #####
-![Alt text](docs/radiator/eq2.png "Descritized Equation of a Radiator")
+![Equations](docs/radiator/eqs.png)
 
 #### Variables ####
 
@@ -132,31 +121,102 @@ create(temperatures)
 
 #### Code ####
 ##### Construction ######
-`Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, mass_flow_rate,heat_transfer_coefficient,surface)`
+```matlab
+Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, mass_flow_rate,heat_transfer_coefficient,surface)
+```
 
 | Input | Description | Type | Unit |
 | --- | --- | --- | --- |
-| `id_inlet` | Pipe Inlet ID | `integer` | - |
-| `id_outlet` | Pipe Outlet ID | `integer` | - |
+| `id_inlet` | Radiator Inlet ID | `integer` | - |
+| `id_outlet` | Radiator Outlet ID | `integer` | - |
 | `id_zone` | Zone ID | `integer` | - |
 | `solver` | Class of the Solver | `solver` | - |
-| `specific_heat_capacity` | Specific Heat Capacity of the Pipe (without fluid) | `double` | *J/(K.kg)* |
-| `density` | Density of the Pipe (without fluid) | `double` | *kg/m<sup>3</sup>* |
+| `specific_heat_capacity` | Specific Heat Capacity of the Radiator (without fluid) | `double` | *J/(K.kg)* |
+| `mass` | Mass of the Radiator (without fluid) | `double` | *kg* |
 | `specific_heat_capacity_fluid` | Specific Heat Capacity of the Fluid | `double` | *J/(K.kg)* |
-| `density_fluid` | Density of Fluid inside the Pipe | `double` | *kg/m<sup>3</sup>* |
-| `mass_flow_rate` | Mass Flow Rate of the Pipe | `double` | *kg/s* |
-| `heat_transfer_coefficient_inner` | Inner Heat Transfer Coefficient of the Pipe | `double` | *W/(m<sup>2</sup>K)* |
-| `heat_transfer_coefficient_outer` | Outer Heat Transfer Coefficient of the Pipe | `double` | *W/(m<sup>2</sup>K)* |
-| `thermal_conductivity` | Thermal Conductivity of the Pipe | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
-| `radius_inner` | Inner Radius of the Pipe | `double` | *m* |
-| `radius_outer` | Outer Radius of the Pipe | `double` | *m* |
-| `length` | Length of the Pipe | `double` | *m* |
+| `mass_fluid` | Mass of Fluid inside the Radiator | `double` | *kg* |
+| `mass_flow_rate` | Mass Flow Rate of the Radiator | `double` | *kg/s* |
+| `heat_transfer_coefficient` | Heat Transfer Coefficient of the Radiator | `double` | *W/(m<sup>2</sup>K)* |
+| `Surface` | Surface of the Radiator | `double` | *m<sup>2</sup>* |
 
 ##### Create Matrix #####
 ```matlab
 create(temperatures)
 ```
 
+
+### Mixer ###
+#### Equations ####
+![Equations](docs/mixer/eqs.png)
+
+#### Variables ####
+
+| Subscript | Description |
+| --- | --- |
+
+#### Code ####
+##### Construction ######
+```matlab
+Mixer(id_inlets, id_outlets, solver, specific_heat_capacity_inlets, mass_flow_rate_inlets, fracrion_outlets)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id_inlets` | Array of Mixer Inlet ID | `array(integer)` | - |
+| `id_outlets` | Array of Mixer Outlet ID | `array(integer)` | - |
+| `solver` | Class of the Solver | `solver` | - |
+| `specific_heat_capacity_inlets` | Specific Heat Capacity of the Mixer Inlets | `array(double)` | *J/(K.kg)* |
+| `mass_flow_rate_inlets` | Mass Flow Rate of the Mixer Inlets | `array(double)` | *kg/s* |
+| `fracrion_outlets` | Heat Transfer Coefficient of the Radiator | `array(double)` | - |
+
+##### Create Matrix #####
+```matlab
+create(temperatures)
+```
+
+
+### Zone ###
+#### Equations ####
+![Equations](docs/zone/eqs.png)
+
+#### Variables ####
+
+| Subscript | Description |
+| --- | --- |
+
+#### Code ####
+##### Construction ######
+```matlab
+Zone(id_radiator_inlets, id_radiator_outlets, solver, specific_heat_capacity_inlets, mass_flow_rate_inlets, fracrion_outlets)
+```
+
+
+##### Create Matrix #####
+```matlab
+create(temperatures)
+```
+
+
+### Solver ###
+#### Equations ####
+![Equations](docs/solver/eqs.png)
+
+#### Code ####
+##### Construction ######
+```matlab
+Solver(time_step, matrix_size, initial_temperature)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `time_step` | Time Step | `double` | s |
+| `matrix_size` | Number of Variables of System of Linear Equations | `integer` | - |
+| `initial_temperature` | Array of Initial Temperatures | `array(double)` | K |
+
+##### Iterate #####
+```matlab
+iterate(boilers, pipes, radiators, mixers)
+```
 
 ## License ##
 BSD 2-Clause License
