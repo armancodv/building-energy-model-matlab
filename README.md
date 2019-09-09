@@ -55,6 +55,8 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
+
+
 ### Pipe ###
 #### Equations ####
 ![Equations](docs/pipe/eqs.png)
@@ -111,6 +113,8 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
+
+
 ### Radiator ###
 #### Equations ####
 ![Equations](docs/radiator/eqs.png)
@@ -154,6 +158,8 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
+
+
 ### Mixer ###
 #### Equations ####
 ![Equations](docs/mixer/eqs.png)
@@ -186,6 +192,8 @@ create(solver)
 | Input | Description | Type | Unit |
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
+
+
 
 ### Zone ###
 #### Equations ####
@@ -235,6 +243,8 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
+
+
 ### Same ###
 #### Code ####
 ##### Construction ######
@@ -256,6 +266,8 @@ create(solver)
 | Input | Description | Type | Unit |
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
+
+
 
 ### Solver ###
 #### Equations ####
