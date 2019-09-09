@@ -55,7 +55,7 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
-
+---
 
 ### Pipe ###
 #### Equations ####
@@ -113,7 +113,7 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
-
+---
 
 ### Radiator ###
 #### Equations ####
@@ -158,7 +158,7 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
-
+---
 
 ### Mixer ###
 #### Equations ####
@@ -193,7 +193,7 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
-
+---
 
 ### Zone ###
 #### Equations ####
@@ -243,7 +243,7 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
-
+---
 
 ### Same ###
 #### Code ####
@@ -267,7 +267,7 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
-
+---
 
 ### Solver ###
 #### Equations ####
