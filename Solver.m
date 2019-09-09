@@ -1,5 +1,6 @@
 classdef Solver
     properties
+        iteration
         time_step
         matrix_size
         temperatures
@@ -15,9 +16,12 @@ classdef Solver
                 obj.temperatures = initial_temperature*ones(matrix_size,1);
                 obj.matrix_coefficients = zeros(matrix_size,matrix_size);
                 obj.right_hand_side_vector = zeros(matrix_size,1);
+
+                obj.iteration = 0;
             end
         end
         function [obj, boilers, pipes, radiators, mixers, zones, sames] = iterate(obj, boilers, pipes, radiators, mixers, zones, sames)
+            obj.iteration = obj.iteration + 1;
             row = 0;
             for i=1:length(boilers)
                 row = row + 1;
@@ -58,6 +62,8 @@ classdef Solver
             if(row~=obj.matrix_size)
                 disp('Error: The number of equations and variables should be same.');
                 fprintf('Number of Variables: %d - Number of Equations: %d', obj.matrix_size, row);
+            else
+                fprintf('Iteration: %d | Time: %d s\n', obj.iteration, obj.iteration*obj.time_step);
             end
             obj.temperatures = obj.matrix_coefficients\obj.right_hand_side_vector;
         end
