@@ -88,19 +88,24 @@ classdef Pipe
             m = pi*obj.density_fluid*obj.radius_inner^2*obj.length;
         end
         
-        % coefficient of inlet temperature of pipe
+        % coefficient of inlet temperature
         function c = c_ti(obj)
             c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)/(2*obj.time_step)-obj.mass_flow_rate*obj.specific_heat_capacity_fluid+obj.heat_transfer_coefficient*obj.surface_inner/2;
         end
         
-        % coefficient of outlet temperature of pipe
+        % coefficient of outlet temperature
         function c = c_to(obj)
             c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)/(2*obj.time_step)+obj.mass_flow_rate*obj.specific_heat_capacity_fluid+obj.heat_transfer_coefficient*obj.surface_inner/2;
         end
         
-        % right-hand coefficient of pipe
+        % coefficient of zone temperature
+        function c = c_tz(obj)
+            c = obj.heat_transfer_coefficient*obj.surface_inner;
+        end
+        
+        % right-hand coefficient
         function c = c_r(obj)
-            c = obj.heat_transfer_coefficient*obj.surface_inner*obj.temperature_zone + (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)*(obj.temperature_inlet+obj.temperature_outlet)/(2*obj.time_step);
+            c = (obj.mass*obj.specific_heat_capacity+obj.mass_fluid*obj.specific_heat_capacity_fluid)*(obj.temperature_inlet+obj.temperature_outlet)/(2*obj.time_step);
         end
         
         % create matrix of coefficients and right-hand side vector
@@ -108,10 +113,12 @@ classdef Pipe
             obj.iteration = obj.iteration + 1;
             obj.temperature_inlet = solver.temperatures(obj.id_inlet);
             obj.temperature_outlet = solver.temperatures(obj.id_outlet);            
+            obj.temperature_zone = solver.temperatures(obj.id_zone);            
             obj.matrix_coefficients = zeros(1,obj.matrix_size);
             obj.right_hand_side_vector = obj.c_r();
             obj.matrix_coefficients(obj.id_inlet) = obj.c_ti();
             obj.matrix_coefficients(obj.id_outlet) = obj.c_to();
+            obj.matrix_coefficients(obj.id_zone) = obj.c_tz();
         end
 
     end

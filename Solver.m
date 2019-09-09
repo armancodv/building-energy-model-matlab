@@ -21,25 +21,25 @@ classdef Solver
             row = 0;
             for i=1:length(boilers)
                 row = row + 1;
-                boilers(i) = boilers(i).create(obj.temperatures);
+                boilers(i) = boilers(i).create(obj);
                 obj.matrix_coefficients(row, :) = boilers(i).matrix_coefficients;
                 obj.right_hand_side_vector(row, 1) = boilers(i).right_hand_side_vector;
             end
             for i=1:length(pipes)
                 row = row + 1;
-                pipes(i) = pipes(i).create(obj.temperatures);
+                pipes(i) = pipes(i).create(obj);
                 obj.matrix_coefficients(row, :) = pipes(i).matrix_coefficients;
                 obj.right_hand_side_vector(row, 1) = pipes(i).right_hand_side_vector;
             end
             for i=1:length(radiators)
                 row = row + 1;
-                radiators(i) = radiators(i).create(obj.temperatures);
+                radiators(i) = radiators(i).create(obj);
                 obj.matrix_coefficients(row, :) = radiators(i).matrix_coefficients;
                 obj.right_hand_side_vector(row, 1) = radiators(i).right_hand_side_vector;
             end
             for i=1:length(mixers)
                 row = row + 1;
-                mixers(i) = mixers(i).create(obj.temperatures);
+                mixers(i) = mixers(i).create(obj);
                 obj.matrix_coefficients(row, :) = mixers(i).matrix_coefficients;
                 obj.right_hand_side_vector(row, 1) = mixers(i).right_hand_side_vector;
             end
