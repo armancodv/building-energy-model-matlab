@@ -48,7 +48,7 @@ Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_
 
 ##### Create Matrix #####
 ```matlab
-create(temperatures)
+create(solver)
 ```
 
 ### Pipe ###
@@ -100,7 +100,7 @@ Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, spec
 
 ##### Create Matrix #####
 ```matlab
-create(temperatures)
+create(solver)
 ```
 
 
@@ -141,7 +141,7 @@ Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, mass, spe
 
 ##### Create Matrix #####
 ```matlab
-create(temperatures)
+create(solver)
 ```
 
 
@@ -171,7 +171,7 @@ Mixer(id_inlets, id_outlets, solver, specific_heat_capacity_inlets, mass_flow_ra
 
 ##### Create Matrix #####
 ```matlab
-create(temperatures)
+create(solver)
 ```
 
 
@@ -193,7 +193,7 @@ Zone(id_radiator_inlets, id_radiator_outlets, solver, specific_heat_capacity_inl
 
 ##### Create Matrix #####
 ```matlab
-create(temperatures)
+create(solver)
 ```
 
 

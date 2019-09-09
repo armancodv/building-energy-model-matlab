@@ -59,10 +59,10 @@ classdef Boiler
         end
         
         % create matrix of coefficients and right-hand side vector
-        function obj = create(obj, temperatures)
+        function obj = create(obj, solver)
             obj.iteration = obj.iteration + 1;
-            obj.temperature_inlet = temperatures(obj.id_inlet);
-            obj.temperature_outlet = temperatures(obj.id_outlet);            
+            obj.temperature_inlet = solver.temperatures(obj.id_inlet);
+            obj.temperature_outlet = solver.temperatures(obj.id_outlet);            
             obj.matrix_coefficients = zeros(1,obj.matrix_size);
             obj.right_hand_side_vector = obj.c_r();
             obj.matrix_coefficients(obj.id_inlet) = obj.c_ti();
