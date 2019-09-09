@@ -217,7 +217,7 @@ Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, thickne
 | `heat_transfer_coefficient_radiators` | Array of Heat Transfer Coefficient of Radiators | `array(double)` | *W/(m<sup>2</sup>K)* |
 | `density_air` | Air Density | `double` | *kg/m<sup>3</sup>* |
 | `volume_air` | Volume of the Air | `double` | *m<sup>3</sup>* |
-| `specific_heat_capacity_air` | Air Specific Heat Capacity | `array(double)` | *J/(K.kg)* |
+| `specific_heat_capacity_air` | Air Specific Heat Capacity | `double` | *J/(K.kg)* |
 | `density_wall` | Wall Density | `double` | *kg/m<sup>3</sup>* |
 | `volume_wall` | Volume of the Wall | `double` | *m<sup>3</sup>* |
 | `specific_heat_capacity_wall` | Wall Heat Transfer Coefficient | `double` | *J/(K.kg)* |
@@ -225,6 +225,28 @@ Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, thickne
 | specific_heat_capacity_equipment`` | Equipment Specific Heat Capacity | `double` | *J/(K.kg)* |
 | `thermal_conductivity_wall` | Wall Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 | `thermal_conductivity_window` | Window Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
+
+##### Create Matrix #####
+```matlab
+create(solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
+
+### Same ###
+#### Code ####
+##### Construction ######
+```matlab
+Same(id_1, id_2, solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id_1` | First Element ID | `integer` | - |
+| `id_1` | Second Element ID | `integer` | - |
+| `solver` | Class of the Solver | `solver` | - |
 
 ##### Create Matrix #####
 ```matlab
@@ -253,7 +275,7 @@ Solver(time_step, matrix_size, initial_temperature)
 
 ##### Iterate #####
 ```matlab
-iterate(boilers, pipes, radiators, mixers)
+iterate(obj, boilers, pipes, radiators, mixers, zones, sames)
 ```
 
 ## License ##
