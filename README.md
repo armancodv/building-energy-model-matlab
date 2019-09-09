@@ -255,7 +255,7 @@ Same(id_1, id_2, solver)
 | Input | Description | Type | Unit |
 | --- | --- | --- | --- |
 | `id_1` | First Element ID | `integer` | - |
-| `id_1` | Second Element ID | `integer` | - |
+| `id_2` | Second Element ID | `integer` | - |
 | `solver` | Class of the Solver | `solver` | - |
 
 ##### Create Matrix #####
@@ -287,7 +287,7 @@ Solver(time_step, matrix_size, initial_temperature)
 
 ##### Iterate #####
 ```matlab
-iterate(obj, boilers, pipes, radiators, mixers, zones, sames)
+iterate(boilers, pipes, radiators, mixers, zones, sames)
 ```
 
 ## License ##
