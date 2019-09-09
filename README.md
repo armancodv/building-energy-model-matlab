@@ -176,7 +176,7 @@ Mixer(id_inlets, id_outlets, solver, specific_heat_capacity_inlets, mass_flow_ra
 | `solver` | Class of the Solver | `solver` | - |
 | `specific_heat_capacity_inlets` | Specific Heat Capacity of the Mixer Inlets | `array(double)` | *J/(K.kg)* |
 | `mass_flow_rate_inlets` | Mass Flow Rate of the Mixer Inlets | `array(double)` | *kg/s* |
-| `fracrion_outlets` | Heat Transfer Coefficient of the Radiator | `array(double)` | - |
+| `fracrion_outlets` | Heat Transfer Coefficient of the Radiator | `array(double)` | *W/(m<sup>2</sup>K)* |
 
 ##### Create Matrix #####
 ```matlab
@@ -199,8 +199,32 @@ create(solver)
 #### Code ####
 ##### Construction ######
 ```matlab
-Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, wall_thicknesses, wall_surfaces, window_thicknesses, window_surfaces, heat_transfer_coefficient_radiators, mass_air, specific_heat_capacity_air, mass_wall, specific_heat_capacity_wall, mass_equipment, specific_heat_capacity_equipment)
+Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, thickness_walls, surface_walls, thickness_windows, surface_windows, surface_radiators, heat_transfer_coefficient_radiators, density_air, volume_air, specific_heat_capacity_air, density_wall, volume_wall, specific_heat_capacity_wall, mass_equipment, specific_heat_capacity_equipment, thermal_conductivity_wall, thermal_conductivity_window)
 ```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id_zone` | Zone ID | `integer` | - |
+| `id_zones` | Array of Neigthbors' Zones IDs | `array(integer)` | - |
+| `id_radiator_inlets` | Array of Radiators Inlets IDs | `array(integer)` | - |
+| `id_radiator_outlets` | Array of Radiators Outlets IDs | `array(integer)` | - |
+| `solver` | Class of the Solver | `solver` | - |
+| `thickness_walls` | Array of Walls Thicknesses | `array(double)` | *m* |
+| `surface_walls` | Array of Walls Surfaces | `array(double)` | *m<sup>2</sup>* |
+| `thickness_windows` | Array of Windows Thicknesses | `array(double)` | *m* |
+| `surface_windows` | Array of Windows Surfaces | `array(double)` | *m<sup>2</sup>* |
+| `surface_radiators` | Array of Radiators Surfaces | `array(double)` | *m<sup>2</sup>* |
+| `heat_transfer_coefficient_radiators` | Array of Heat Transfer Coefficient of Radiators | `array(double)` | *W/(m<sup>2</sup>K)* |
+| `density_air` | Air Density | `double` | *kg/m<sup>3</sup>* |
+| `volume_air` | Volume of the Air | `double` | *m<sup>3</sup>* |
+| `specific_heat_capacity_air` | Air Specific Heat Capacity | `array(double)` | *J/(K.kg)* |
+| `density_wall` | Wall Density | `double` | *kg/m<sup>3</sup>* |
+| `volume_wall` | Volume of the Wall | `double` | *m<sup>3</sup>* |
+| `specific_heat_capacity_wall` | Wall Heat Transfer Coefficient | `double` | *J/(K.kg)* |
+| `mass_equipment` | Mass of Equipment | `double` | *kg* |
+| specific_heat_capacity_equipment`` | Equipment Specific Heat Capacity | `double` | *J/(K.kg)* |
+| `thermal_conductivity_wall` | Wall Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
+| `thermal_conductivity_window` | Window Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 
 ##### Create Matrix #####
 ```matlab

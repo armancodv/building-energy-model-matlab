@@ -17,7 +17,7 @@ classdef Solver
                 obj.right_hand_side_vector = zeros(matrix_size,1);
             end
         end
-        function [obj, boilers, pipes, radiators, mixers] = iterate(obj, boilers, pipes, radiators, mixers)
+        function [obj, boilers, pipes, radiators, mixers, zones, sames] = iterate(obj, boilers, pipes, radiators, mixers, zones, sames)
             row = 0;
             for i=1:length(boilers)
                 row = row + 1;
@@ -43,8 +43,21 @@ classdef Solver
                 obj.matrix_coefficients(row, :) = mixers(i).matrix_coefficients;
                 obj.right_hand_side_vector(row, 1) = mixers(i).right_hand_side_vector;
             end
+            for i=1:length(zones)
+                row = row + 1;
+                zones(i) = zones(i).create(obj);
+                obj.matrix_coefficients(row, :) = zones(i).matrix_coefficients;
+                obj.right_hand_side_vector(row, 1) = zones(i).right_hand_side_vector;
+            end
+            for i=1:length(sames)
+                row = row + 1;
+                sames(i) = sames(i).create(obj);
+                obj.matrix_coefficients(row, :) = sames(i).matrix_coefficients;
+                obj.right_hand_side_vector(row, 1) = sames(i).right_hand_side_vector;
+            end
             if(row~=obj.matrix_size)
                 disp('Error: The number of equations and variables should be same.');
+                fprintf('Number of Variables: %d - Number of Equations: %d', obj.matrix_size, row);
             end
             obj.temperatures = obj.matrix_coefficients\obj.right_hand_side_vector;
         end
