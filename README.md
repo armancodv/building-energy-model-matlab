@@ -199,7 +199,7 @@ create(solver)
 #### Code ####
 ##### Construction ######
 ```matlab
-Zone(id_radiator_inlets, id_radiator_outlets, solver, specific_heat_capacity_inlets, mass_flow_rate_inlets, fracrion_outlets)
+Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, wall_thicknesses, wall_surfaces, window_thicknesses, window_surfaces, heat_transfer_coefficient_radiators, mass_air, specific_heat_capacity_air, mass_wall, specific_heat_capacity_wall, mass_equipment, specific_heat_capacity_equipment)
 ```
 
 ##### Create Matrix #####

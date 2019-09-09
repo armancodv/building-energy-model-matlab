@@ -5,11 +5,18 @@ classdef Zone
         id_zones
         id_radiator_inlets
         id_radiator_outlets
-        wall_thicknesses
-        wall_surfaces
-        window_thicknesses
-        window_surfaces
+        thickness_walls
+        surface_walls
+        thickness_windows
+        surface_windows
+        surface_radiators
         heat_transfer_coefficient_radiators
+        mass_air
+        specific_heat_capacity_air
+        mass_wall
+        specific_heat_capacity_wall
+        mass_equipment
+        specific_heat_capacity_equipment
         time_step
         matrix_size
         matrix_coefficients
@@ -19,7 +26,7 @@ classdef Zone
     end
     
     methods
-        function obj = Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, wall_thicknesses, wall_surfaces, window_thicknesses, window_surfaces, heat_transfer_coefficient_radiators)
+        function obj = Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, thickness_walls, surface_walls, thickness_windows, surface_windows, surface_radiators, heat_transfer_coefficient_radiators, mass_air, specific_heat_capacity_air, mass_wall, specific_heat_capacity_wall, mass_equipment, specific_heat_capacity_equipment)
             if nargin > 0
                 obj.id_zone = id_zone;
                 obj.id_zones = id_zones;
@@ -27,11 +34,18 @@ classdef Zone
                 obj.id_radiator_outlets = id_radiator_outlets;
                 obj.time_step = solver.time_step;
                 obj.matrix_size = solver.matrix_size;
-                obj.wall_thicknesses = wall_thicknesses;
-                obj.wall_surfaces = wall_surfaces;
-                obj.window_thicknesses = window_thicknesses;
-                obj.window_surfaces = window_surfaces;
+                obj.thickness_walls = thickness_walls;
+                obj.surface_walls = surface_walls;
+                obj.thickness_windows = thickness_windows;
+                obj.surface_windows = surface_windows;
+                obj.surface_radiators = surface_radiators;
                 obj.heat_transfer_coefficient_radiators = heat_transfer_coefficient_radiators;
+                obj.mass_air = mass_air;
+                obj.specific_heat_capacity_air = specific_heat_capacity_air;
+                obj.mass_wall = mass_wall;
+                obj.specific_heat_capacity_wall = specific_heat_capacity_wall;
+                obj.mass_equipment = mass_equipment;
+                obj.specific_heat_capacity_equipment = specific_heat_capacity_equipment;
 
                 obj.iteration = 0;
                 obj.matrix_coefficients = zeros(1,solver.matrix_size);
@@ -51,13 +65,13 @@ classdef Zone
         end
         
         % coefficient of radiator inlet temperature
-        function c = c_tri(obj, a_r)
-            c = -obj.u_r*a_r/2;
+        function c = c_tri(obj, i)
+            c = -obj.heat_transfer_coefficient_radiators(i)*obj.surface_radiators(i)/2;
         end
         
         % coefficient of radiator outlet temperature
-        function c = c_tro(obj, a_r)
-            c = -obj.u_r*a_r/2;
+        function c = c_tro(obj, i)
+            c = -obj.heat_transfer_coefficient_radiators(i)*obj.surface_radiators(i)/2;
         end
         
         % coefficient of zone temperature
