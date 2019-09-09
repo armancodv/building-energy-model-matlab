@@ -51,6 +51,10 @@ Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_
 create(solver)
 ```
 
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
+
 ### Pipe ###
 #### Equations ####
 ![Equations](docs/pipe/eqs.png)
@@ -103,7 +107,9 @@ Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, spec
 create(solver)
 ```
 
-
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
 
 ### Radiator ###
 #### Equations ####
@@ -144,6 +150,9 @@ Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, mass, spe
 create(solver)
 ```
 
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
 
 ### Mixer ###
 #### Equations ####
@@ -174,6 +183,9 @@ Mixer(id_inlets, id_outlets, solver, specific_heat_capacity_inlets, mass_flow_ra
 create(solver)
 ```
 
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
 
 ### Zone ###
 #### Equations ####
@@ -190,12 +202,14 @@ create(solver)
 Zone(id_radiator_inlets, id_radiator_outlets, solver, specific_heat_capacity_inlets, mass_flow_rate_inlets, fracrion_outlets)
 ```
 
-
 ##### Create Matrix #####
 ```matlab
 create(solver)
 ```
 
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
 
 ### Solver ###
 #### Equations ####
