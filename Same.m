@@ -9,6 +9,7 @@ classdef Same
         matrix_size
         matrix_coefficients
         right_hand_side_vector
+        number_of_equations
     end
     
     methods
@@ -20,8 +21,9 @@ classdef Same
                 obj.matrix_size = solver.matrix_size;
 
                 obj.iteration = 0;
-                obj.matrix_coefficients = zeros(1,solver.matrix_size);
-                obj.right_hand_side_vector = 0;
+                obj.number_of_equations = 1;
+                obj.matrix_coefficients = zeros(obj.number_of_equations,solver.matrix_size);
+                obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
                 obj.temperature_1 = solver.temperatures(id_1);
                 obj.temperature_2 = solver.temperatures(id_2);
                 
@@ -31,8 +33,8 @@ classdef Same
         % create matrix of coefficients and right-hand side vector
         function obj = create(obj, solver)
             obj.iteration = obj.iteration + 1;
-            obj.matrix_coefficients = zeros(1,obj.matrix_size);
-            obj.right_hand_side_vector = 0;
+            obj.matrix_coefficients = zeros(obj.number_of_equations,obj.matrix_size);
+            obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
             obj.temperature_1 = solver.temperatures(obj.id_1);                    
             obj.temperature_2 = solver.temperatures(obj.id_2);                    
             obj.matrix_coefficients(obj.id_1) = 1;

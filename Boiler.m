@@ -7,6 +7,7 @@ classdef Boiler
         matrix_size
         matrix_coefficients
         right_hand_side_vector
+        number_of_equations
         
         specific_heat_capacity
         mass
@@ -36,8 +37,9 @@ classdef Boiler
                 obj.status = status;
                 
                 obj.iteration = 0;
-                obj.matrix_coefficients = zeros(1,solver.matrix_size);
-                obj.right_hand_side_vector = 0;
+                obj.number_of_equations = 1;
+                obj.matrix_coefficients = zeros(obj.number_of_equations,solver.matrix_size);
+                obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
                 obj.temperature_inlet = solver.temperatures(obj.id_inlet);
                 obj.temperature_outlet = solver.temperatures(obj.id_outlet);
             end
@@ -63,7 +65,8 @@ classdef Boiler
             obj.iteration = obj.iteration + 1;
             obj.temperature_inlet = solver.temperatures(obj.id_inlet);
             obj.temperature_outlet = solver.temperatures(obj.id_outlet);            
-            obj.matrix_coefficients = zeros(1,obj.matrix_size);
+            obj.matrix_coefficients = zeros(obj.number_of_equations,obj.matrix_size);
+            obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
             obj.right_hand_side_vector = obj.c_r();
             obj.matrix_coefficients(obj.id_inlet) = obj.c_ti();
             obj.matrix_coefficients(obj.id_outlet) = obj.c_to();

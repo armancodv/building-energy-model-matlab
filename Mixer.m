@@ -7,6 +7,7 @@ classdef Mixer
         matrix_size
         matrix_coefficients
         right_hand_side_vector
+        number_of_equations
         
         specific_heat_capacity_inlets
         temperature_inlets
@@ -31,8 +32,9 @@ classdef Mixer
                 obj.fracrion_outlets = fracrion_outlets;
 
                 obj.iteration = 0;
-                obj.matrix_coefficients = zeros(1,solver.matrix_size);
-                obj.right_hand_side_vector = 0;
+                obj.number_of_equations = length(id_outlets);
+                obj.matrix_coefficients = zeros(obj.number_of_equations,solver.matrix_size);
+                obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
                 
                 for i=1:length(obj.id_inlets)
                     obj.temperature_inlets(i) = solver.temperatures(obj.id_inlets(i));                    
@@ -58,15 +60,19 @@ classdef Mixer
         % create matrix of coefficients and right-hand side vector
         function obj = create(obj, solver)
             obj.iteration = obj.iteration + 1;
-            obj.matrix_coefficients = zeros(1,obj.matrix_size);
-            obj.right_hand_side_vector = 0;
+            obj.matrix_coefficients = zeros(obj.number_of_equations,obj.matrix_size);
+            obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
             for i=1:length(obj.id_inlets)
                 obj.temperature_inlets(i) = solver.temperatures(obj.id_inlets(i));                    
-                obj.matrix_coefficients(obj.id_inlets(i)) = obj.c_ti(i);
+                obj.matrix_coefficients(1,obj.id_inlets(i)) = obj.c_ti(i);
             end
             for i=1:length(obj.id_outlets)
                 obj.temperature_outlets(i) = solver.temperatures(obj.id_outlets(i));                    
-                obj.matrix_coefficients(obj.id_outlets(i)) = obj.c_to(i);
+                obj.matrix_coefficients(1,obj.id_outlets(i)) = obj.c_to(i);
+            end
+            for i=2:obj.number_of_equations
+                obj.matrix_coefficients(i, obj.id_outlets(1)) = 1;
+                obj.matrix_coefficients(i, obj.id_outlets(i)) = -1;
             end
         end
 

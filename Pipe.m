@@ -8,6 +8,7 @@ classdef Pipe
         matrix_size
         matrix_coefficients
         right_hand_side_vector        
+        number_of_equations
         
         %input
         specific_heat_capacity
@@ -54,8 +55,9 @@ classdef Pipe
                 obj.length = length;
                 
                 obj.iteration = 0;
-                obj.matrix_coefficients = zeros(1,solver.matrix_size);
-                obj.right_hand_side_vector = 0;
+                obj.number_of_equations = 1;
+                obj.matrix_coefficients = zeros(obj.number_of_equations,solver.matrix_size);
+                obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
                 obj.temperature_inlet = solver.temperatures(obj.id_inlet);
                 obj.temperature_outlet = solver.temperatures(obj.id_outlet);
                 obj.temperature_zone = solver.temperatures(obj.id_zone);            
@@ -114,7 +116,8 @@ classdef Pipe
             obj.temperature_inlet = solver.temperatures(obj.id_inlet);
             obj.temperature_outlet = solver.temperatures(obj.id_outlet);            
             obj.temperature_zone = solver.temperatures(obj.id_zone);            
-            obj.matrix_coefficients = zeros(1,obj.matrix_size);
+            obj.matrix_coefficients = zeros(obj.number_of_equations,obj.matrix_size);
+            obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
             obj.right_hand_side_vector = obj.c_r();
             obj.matrix_coefficients(obj.id_inlet) = obj.c_ti();
             obj.matrix_coefficients(obj.id_outlet) = obj.c_to();

@@ -28,6 +28,7 @@ classdef Zone
         matrix_size
         matrix_coefficients
         right_hand_side_vector
+        number_of_equations
         
         thermal_resistance_inner_wall
         thermal_resistance_outer_wall
@@ -79,8 +80,9 @@ classdef Zone
                 end
 
                 obj.iteration = 0;
-                obj.matrix_coefficients = zeros(1,solver.matrix_size);
-                obj.right_hand_side_vector = 0;
+                obj.number_of_equations = 1;
+                obj.matrix_coefficients = zeros(obj.number_of_equations,solver.matrix_size);
+                obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
                 obj.temperature_zone = solver.temperatures(obj.id_zone);            
                 
             end
@@ -123,7 +125,8 @@ classdef Zone
         % create matrix of coefficients and right-hand side vector
         function obj = create(obj, solver)
             obj.iteration = obj.iteration + 1;
-            obj.matrix_coefficients = zeros(1,obj.matrix_size);
+            obj.matrix_coefficients = zeros(obj.number_of_equations,obj.matrix_size);
+            obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
             obj.right_hand_side_vector = obj.c_r();
             obj.temperature_zone = solver.temperatures(obj.id_zone);            
             obj.matrix_coefficients(obj.id_zone) = obj.c_tz();
