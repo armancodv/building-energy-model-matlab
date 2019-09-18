@@ -147,7 +147,7 @@ Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, mass, spe
 | `mass_fluid` | Mass of Fluid inside the Radiator | `double` | *kg* |
 | `mass_flow_rate` | Mass Flow Rate of the Radiator | `double` | *kg/s* |
 | `heat_transfer_coefficient` | Heat Transfer Coefficient of the Radiator | `double` | *W/(m<sup>2</sup>K)* |
-| `Surface` | Surface of the Radiator | `double` | *m<sup>2</sup>* |
+| `surface` | Surface of the Radiator | `double` | *m<sup>2</sup>* |
 
 ##### Create Matrix #####
 ```matlab
@@ -257,6 +257,59 @@ Same(id_1, id_2, solver)
 | `id_1` | First Element ID | `integer` | - |
 | `id_2` | Second Element ID | `integer` | - |
 | `solver` | Class of the Solver | `solver` | - |
+
+##### Create Matrix #####
+```matlab
+create(solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
+
+---
+
+### HeatExchanger ###
+#### Equations ####
+![Equations](docs/heatexchanger/eqs.png)
+
+#### Variables ####
+
+| Variable | Description |
+| --- | --- |
+| *R<sub>c</sub>* | Capacity Ratio |
+| *NTU* | Number of Transfer Units |
+| *?* | Effectiveness |
+
+| Subscript | Description |
+| --- | --- |
+| *s* | Supply |
+| *d* | Demand |
+| *i* | Inlet |
+| *o* | Outlet |
+| *min* | Minimum |
+| *max* | Maximum |
+
+#### Code ####
+##### Construction ######
+```matlab
+HeatExchanger(id_supply_inlet, id_supply_outlet, id_demand_inlet, id_demand_outlet, solver, specific_heat_capacity_supply, specific_heat_capacity_demand, mass_flow_rate_supply, mass_flow_rate_demand, heat_transfer_coefficient, surface)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id_supply_inlet` | First Element ID | `integer` | - |
+| `id_supply_outlet` | Second Element ID | `integer` | - |
+| `id_demand_inlet` | First Element ID | `integer` | - |
+| `id_demand_outlet` | Second Element ID | `integer` | - |
+| `solver` | Class of the Solver | `solver` | - |
+| `specific_heat_capacity_supply` | Specific Heat Capacity of the Supply | `double` | *J/(K.kg)* |
+| `specific_heat_capacity_demand` | Specific Heat Capacity of the Demand | `double` | *J/(K.kg)* |
+| `mass_flow_rate_supply` | Mass Flow Rate of the Supply | `double` | *kg/s* |
+| `mass_flow_rate_demand` | Mass Flow Rate of the Demand | `double` | *kg/s* |
+| `heat_transfer_coefficient` | Heat Transfer Coefficient of the Heat Exchanger | `double` | *W/(m<sup>2</sup>K)* |
+| `surface` | Surface of the Heat Exchanger | `double` | *m<sup>2</sup>* |
+
 
 ##### Create Matrix #####
 ```matlab
