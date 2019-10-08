@@ -68,7 +68,7 @@ classdef HeatExchanger
         end
         
         % coefficient of supply outlet - first equation
-        function c = c_tso1(obj) 
+        function c = c_tso1(~) 
             c = - 1;
         end
         
@@ -83,7 +83,7 @@ classdef HeatExchanger
         end
         
         % coefficient of demand outlet - second equation
-        function c = c_tdo2(obj) 
+        function c = c_tdo2(~) 
             c = - 1;
         end
         
