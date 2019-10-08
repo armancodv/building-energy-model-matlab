@@ -298,10 +298,10 @@ HeatExchanger(id_supply_inlet, id_supply_outlet, id_demand_inlet, id_demand_outl
 
 | Input | Description | Type | Unit |
 | --- | --- | --- | --- |
-| `id_supply_inlet` | First Element ID | `integer` | - |
-| `id_supply_outlet` | Second Element ID | `integer` | - |
-| `id_demand_inlet` | First Element ID | `integer` | - |
-| `id_demand_outlet` | Second Element ID | `integer` | - |
+| `id_supply_inlet` | Supply Inlet Element ID | `integer` | - |
+| `id_supply_outlet` | Supply Outlet Element ID | `integer` | - |
+| `id_demand_inlet` | Demand Inlet Element ID | `integer` | - |
+| `id_demand_outlet` | Demand Outlet Element ID | `integer` | - |
 | `solver` | Class of the Solver | `solver` | - |
 | `specific_heat_capacity_supply` | Specific Heat Capacity of the Supply | `double` | *J/(K.kg)* |
 | `specific_heat_capacity_demand` | Specific Heat Capacity of the Demand | `double` | *J/(K.kg)* |
@@ -309,6 +309,56 @@ HeatExchanger(id_supply_inlet, id_supply_outlet, id_demand_inlet, id_demand_outl
 | `mass_flow_rate_demand` | Mass Flow Rate of the Demand | `double` | *kg/s* |
 | `heat_transfer_coefficient` | Heat Transfer Coefficient of the Heat Exchanger | `double` | *W/(m<sup>2</sup>K)* |
 | `surface` | Surface of the Heat Exchanger | `double` | *m<sup>2</sup>* |
+
+
+##### Create Matrix #####
+```matlab
+create(solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
+---
+
+### Chiller ###
+#### Equations ####
+![Equations](docs/chiller/eqs.png)
+
+#### Variables ####
+
+| Variable | Description |
+| --- | --- |
+| *Q.* | Heat Transfer Rate |
+| *P* | Electrical Power (input) |
+| *COP* | Coefficient of Performance |
+| *C* | Water Specific Heat Capacity |
+
+| Subscript | Description |
+| --- | --- |
+| *e* | Evaporator |
+| *c* | Condenser |
+| *i* | Inlet |
+| *o* | Outlet |
+
+#### Code ####
+##### Construction ######
+```matlab
+Chiller(id_condenser_inlet, id_condenser_outlet, id_evaporator_inlet, id_evaporator_outlet, solver, specific_heat_capacity_fluid, power, coefficient_of_performance, mass_flow_rate_condenser, mass_flow_rate_evaporator, status)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id_condenser_inlet` | Condenser Inlet Element ID | `integer` | - |
+| `id_condenser_outlet` | Condenser Outlet  Element ID | `integer` | - |
+| `id_evaporator_inlet` | Evaporator Inlet Element ID | `integer` | - |
+| `id_evaporator_outlet` | Evaporator Outlet Element ID | `integer` | - |
+| `solver` | Class of the Solver | `solver` | - |
+| `specific_heat_capacity_fluid` | Specific Heat Capacity of Water | `double` | *J/(K.kg)* |
+| `power` | Electrical Power | `double` | *W* |
+| `coefficient_of_performance` | Coefficient of Performance | `double` | - |
+| `mass_flow_rate_condenser` | Mass Flow Rate of the Condenser | `double` | *kg/s* |
+| `mass_flow_rate_evaporator` | Mass Flow Rate of the Evaporator | `double` | *kg/s* |
 
 
 ##### Create Matrix #####
