@@ -104,9 +104,9 @@ classdef HeatExchanger
             obj.matrix_coefficients(1,obj.id_supply_inlet) = obj.c_tsi1();
             obj.matrix_coefficients(1,obj.id_supply_outlet) = obj.c_tso1();
             obj.matrix_coefficients(1,obj.id_demand_inlet) = obj.c_tdi1();
-            obj.matrix_coefficients(2,obj.id_supply_inlet) = obj.c_tdi2();
-            obj.matrix_coefficients(2,obj.id_supply_outlet) = obj.c_tdo2();
-            obj.matrix_coefficients(2,obj.id_demand_inlet) = obj.c_tsi2();
+            obj.matrix_coefficients(2,obj.id_demand_inlet) = obj.c_tdi2();
+            obj.matrix_coefficients(2,obj.id_demand_outlet) = obj.c_tdo2();
+            obj.matrix_coefficients(2,obj.id_supply_inlet) = obj.c_tsi2();
         end
 
     end

@@ -153,13 +153,20 @@ classdef FanCoil
             
             obj.matrix_coefficients = zeros(obj.number_of_equations,obj.matrix_size);
             obj.right_hand_side_vector = zeros(obj.number_of_equations,1);
-            obj.matrix_coefficients(1,obj.id_air_inlet) = obj.c_tai1();
-            obj.matrix_coefficients(1,obj.id_air_outlet) = obj.c_tao1();
-            obj.matrix_coefficients(1,obj.id_heating_inlet) = obj.c_thi1();
-            obj.matrix_coefficients(2,obj.id_air_inlet) = obj.c_tai2();
-            obj.matrix_coefficients(2,obj.id_air_outlet) = obj.c_tao2();
-            obj.matrix_coefficients(2,obj.id_heating_inlet) = obj.c_thi2();
-            obj.matrix_coefficients(2,obj.id_heating_oulet) = obj.c_tho2();
+            if(obj.status_heating)
+                obj.matrix_coefficients(1,obj.id_air_inlet) = obj.c_tai1();
+                obj.matrix_coefficients(1,obj.id_air_outlet) = obj.c_tao1();
+                obj.matrix_coefficients(1,obj.id_heating_inlet) = obj.c_thi1();
+                obj.matrix_coefficients(2,obj.id_air_inlet) = obj.c_tai2();
+                obj.matrix_coefficients(2,obj.id_air_outlet) = obj.c_tao2();
+                obj.matrix_coefficients(2,obj.id_heating_inlet) = obj.c_thi2();
+                obj.matrix_coefficients(2,obj.id_heating_oulet) = obj.c_tho2();
+            elseif(obj.status_cooling)
+                
+            else
+                
+            end
+                
         end
 
 
