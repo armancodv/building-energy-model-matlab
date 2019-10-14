@@ -29,7 +29,7 @@ In this code, the temperatures are considered variables of the problem, which ar
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 boiler = Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, power, mass_flow_rate, status);
 ```
 
@@ -47,7 +47,7 @@ boiler = Boiler(id_inlet, id_outlet, solver, specific_heat_capacity, mass, speci
 | `status` | Status of the Boiler (ON/OFF) | `boolean` | - |
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -82,7 +82,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 pipe = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, mass_flow_rate,heat_transfer_coefficient_inner,heat_transfer_coefficient_outer,thermal_conductivity,radius_inner,radius_outer,length);
 ```
 
@@ -105,7 +105,7 @@ pipe = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, densit
 | `length` | Length of the Pipe | `double` | *m* |
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -131,7 +131,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 radiator = Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, mass, specific_heat_capacity_fluid, mass_fluid, mass_flow_rate,heat_transfer_coefficient,surface);
 ```
 
@@ -150,7 +150,7 @@ radiator = Radiator(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity
 | `surface` | Surface of the Radiator | `double` | *m<sup>2</sup>* |
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -171,7 +171,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 mixer = Mixer(id_inlets, id_outlets, solver, specific_heat_capacity_inlets, mass_flow_rate_inlets, fracrion_outlets);
 ```
 
@@ -185,7 +185,7 @@ mixer = Mixer(id_inlets, id_outlets, solver, specific_heat_capacity_inlets, mass
 | `fracrion_outlets` | Heat Transfer Coefficient of the Radiator | `array(double)` | *W/(m<sup>2</sup>K)* |
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -206,7 +206,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 zone = Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, thickness_walls, surface_walls, thickness_windows, surface_windows, surface_radiators, heat_transfer_coefficient_radiators, density_air, volume_air, specific_heat_capacity_air, density_wall, volume_wall, specific_heat_capacity_wall, mass_equipment, specific_heat_capacity_equipment, thermal_conductivity_wall, thermal_conductivity_window);
 ```
 
@@ -235,7 +235,7 @@ zone = Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, 
 | `thermal_conductivity_window` | Window Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -248,7 +248,7 @@ create(solver)
 ### Same ###
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 same = Same(id_1, id_2, solver);
 ```
 
@@ -259,7 +259,7 @@ same = Same(id_1, id_2, solver);
 | `solver` | Class of the Solver | `solver` | - |
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -292,7 +292,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 heatExchanger = HeatExchanger(id_supply_inlet, id_supply_outlet, id_demand_inlet, id_demand_outlet, solver, specific_heat_capacity_supply, specific_heat_capacity_demand, mass_flow_rate_supply, mass_flow_rate_demand, heat_transfer_coefficient, surface);
 ```
 
@@ -312,7 +312,7 @@ heatExchanger = HeatExchanger(id_supply_inlet, id_supply_outlet, id_demand_inlet
 
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -344,7 +344,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 chiller = Chiller(id_condenser_inlet, id_condenser_outlet, id_evaporator_inlet, id_evaporator_outlet, solver, specific_heat_capacity_fluid, power, coefficient_of_performance, mass_flow_rate_condenser, mass_flow_rate_evaporator, status);
 ```
 
@@ -363,7 +363,7 @@ chiller = Chiller(id_condenser_inlet, id_condenser_outlet, id_evaporator_inlet, 
 
 
 ##### Create Matrix #####
-```matlab
+```Matlab
 create(solver)
 ```
 
@@ -397,7 +397,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 fanCoil = FanCoil(id_heating_inlet, id_heating_outlet, id_cooling_inlet, id_cooling_outlet, id_air_inlet, id_air_outlet, id_zone, solver, specific_heat_capacity_air, specific_heat_capacity_cooling, specific_heat_capacity_heating, mass_flow_rate_air, mass_flow_rate_cooling, mass_flow_rate_heating, status_heating, status_cooling, heat_transfer_coefficient_heating, heat_transfer_coefficient_cooling, surface_heating, surface_cooling);
 ```
 
@@ -406,7 +406,54 @@ fanCoil = FanCoil(id_heating_inlet, id_heating_outlet, id_cooling_inlet, id_cool
 
 
 ##### Create Matrix #####
-```matlab
+```Matlab
+create(solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
+
+---
+
+### AirHeatExchanger ###
+#### Equations ####
+![Equations](docs/airheatexchanger/eqs.png)
+
+#### Variables ####
+
+| Variable | Description |
+| --- | --- |
+| *C.* | Capacitance Flows |
+| *HX* | Average Operating Volumetric to Nominal Supply Air Flow Rate |
+| *?* | Effectiveness |
+| *avg* | Average |
+| *Q.* | Heat Transfer Rate |
+
+| Subscript | Description |
+| --- | --- |
+| *sensible* | Sensible |
+| *operating* | Operating |
+| *75% flow* | 75% Flow Rate |
+| *100% flow* | 100% Flow Rate |
+| *s* | Supply |
+| *e* | Exhaust |
+| *i* | Inlet |
+| *o* | Outlet |
+| *min* | Minimum |
+
+#### Code ####
+##### Construction ######
+```Matlab
+airHeatExchanger = AirHeatExchanger(id_supply_inlet, id_supply_outlet, id_exhaust_inlet, id_exhaust_outlet, solver, mass_flow_rate_supply_nominal, specific_heat_capacity_supply, specific_heat_capacity_exhaust, mass_flow_rate_supply, mass_flow_rate_exhaust, sensible_effectiveness_75, sensible_effectiveness_100, latent_effectiveness_75, latent_effectiveness_100);
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+
+
+##### Create Matrix #####
+```Matlab
 create(solver)
 ```
 
@@ -422,7 +469,7 @@ create(solver)
 
 #### Code ####
 ##### Construction ######
-```matlab
+```Matlab
 Solver(time_step, matrix_size, initial_temperature)
 ```
 
@@ -433,8 +480,8 @@ Solver(time_step, matrix_size, initial_temperature)
 | `initial_temperature` | Array of Initial Temperatures | `array(double)` | K |
 
 ##### Iterate #####
-```matlab
-iterate(boilers, pipes, radiators, mixers, zones, sames)
+```Matlab
+[solver, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils] = solver.iterate(boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils);
 ```
 
 ## License ##
