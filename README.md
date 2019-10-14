@@ -60,6 +60,7 @@ create(solver)
 
 ### Pipe ###
 #### Equations ####
+![Schematic](docs/pipe/schematic.png)
 ![Equations](docs/pipe/eqs.png)
 
 #### Variables ####
