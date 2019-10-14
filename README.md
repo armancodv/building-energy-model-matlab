@@ -8,6 +8,7 @@ In this code, the temperatures are considered variables of the problem, which ar
 
 ### Boiler ###
 #### Equations ####
+![Schematic](docs/boiler/schematic.png)
 ![Equations](docs/boiler/eqs.png)
 
 #### Variables ####
