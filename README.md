@@ -119,6 +119,7 @@ create(solver)
 
 ### Radiator ###
 #### Equations ####
+![Schematic](docs/radiator/schematic.png)
 ![Equations](docs/radiator/eqs.png)
 
 #### Variables ####
@@ -164,6 +165,7 @@ create(solver)
 
 ### Mixer ###
 #### Equations ####
+![Schematic](docs/mixer/schematic.png)
 ![Equations](docs/mixer/eqs.png)
 
 #### Variables ####
@@ -232,7 +234,7 @@ zone = Zone(id_zone, id_zones, id_radiator_inlets, id_radiator_outlets, solver, 
 | `volume_wall` | Volume of the Wall | `double` | *m<sup>3</sup>* |
 | `specific_heat_capacity_wall` | Wall Heat Transfer Coefficient | `double` | *J/(K.kg)* |
 | `mass_equipment` | Mass of Equipment | `double` | *kg* |
-| specific_heat_capacity_equipment`` | Equipment Specific Heat Capacity | `double` | *J/(K.kg)* |
+| `specific_heat_capacity_equipment` | Equipment Specific Heat Capacity | `double` | *J/(K.kg)* |
 | `thermal_conductivity_wall` | Wall Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 | `thermal_conductivity_window` | Window Thermal Conductivity | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 
