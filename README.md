@@ -7,6 +7,8 @@ In this code, the temperatures are considered variables of the problem, which ar
 ## Classes ##
 
 ### Boiler ###
+The boiler contains an inlet fluid pipe, an outlet fluid pipe, a fluid tank which is heated up, and the rest. The class of boiler receives input values including the id of the inlet, the id of outlet, the solver, the specific heat capacity of the rest, the mass of the rest, specific heat capacity of the fluid, mass of the fluid, the boiler power, the mass flow rate, and the status. The inlet and outlet should be outlet and inlet of pipes which are connected to the boiler respectively. The solver is the class of the solver that is used. Next, there are specific heat capacity and mass of the boiler except containing fluid. Then, there are those of the fluid. The next argument is the power of the boiler. The mass flow rate also should be given as an input value. The status works as a switch in the boiler which can be controlled by the smart controller in the next stages of the project.
+
 #### Equations ####
 ![Schematic](docs/boiler/schematic.png)
 ![Equations](docs/boiler/eqs.png)
@@ -59,6 +61,8 @@ create(solver)
 ---
 
 ### Pipe ###
+Another element in the model is the pipe. The input values of the pipe class are the id of inlet, the id of outlet, the id of zone, the solver, specific heat capacity of the pipe wall, density of the pipe wall, specific heat capacity of the fluid, density of the fluid, mass flow rate of the fluid, inner heat transfer coefficient, outer heat transfer coefficient, thermal conductivity of the tube wall, inner radius of the pipe, outer radius of the pipe, and length of the pipe. The inlet and outlet of the pipe are the elements which are connected to the pipe. The zone which is in contact with the outer side of the pipe is also the argument of the class.
+
 #### Equations ####
 ![Schematic](docs/pipe/schematic.png)
 ![Equations](docs/pipe/eqs.png)
@@ -118,6 +122,8 @@ create(solver)
 ---
 
 ### Radiator ###
+The input values of the radiator class are the id of inlet, the id of outlet, the id of zone, the solver, specific heat capacity of the radiator except containing fluid, mass of the radiator except containing fluid, specific heat capacity of the fluid, mass of fluid, mass flow rate of the fluid, heat transfer coefficient of the radiator to the zone, the surface of the radiator which is in contact to the air of the zone.
+
 #### Equations ####
 ![Schematic](docs/radiator/schematic.png)
 ![Equations](docs/radiator/eqs.png)
@@ -164,6 +170,8 @@ create(solver)
 ---
 
 ### Mixer ###
+The mixer is an element that works as a mixer or manifold. It can mix multiple flowing fluids to multiple outlets. For the input arguments of the related class, there are the ids of inlets, the ids outlets, the solver, specific heat capacities of the inlets, mass flow rates of the inlets, and the fractions of outlets.
+
 #### Equations ####
 ![Schematic](docs/mixer/schematic.png)
 ![Equations](docs/mixer/eqs.png)
@@ -200,6 +208,8 @@ create(solver)
 ---
 
 ### Zone ###
+The zone class contains arguments including the id of the zone, the ids of neighbor zones as an array, the ids of radiators inlets as an array, the ids radiators outlets as an array, the solver, thickness of walls as an array, surface of the walls as an array, thickness of the windows as an array, surface of the windows as an array, surface of radiators as an array, heat transfer coefficient radiators as an array, density of the air, volume of the air, specific heat capacity of the air, density of the wall, volume of the wall, specific heat capacity of the wall, mass of the equipment, specific heat capacity of the equipment, thermal conductivity of the wall, thermal conductivity of the window.
+
 #### Equations ####
 ![Equations](docs/zone/eqs.png)
 
@@ -274,6 +284,8 @@ create(solver)
 ---
 
 ### HeatExchanger ###
+The class of heat exchanger contains the id of supply inlet, the id of supply outlet, the id of demand inlet, the id of demand outlet, the solver, specific heat capacity of the supply, specific heat capacity of the demand, mass flow rate of the supply, mass flow rate of the demand, heat transfer coefficient of the heat exchanger, and contact surface of the heat exchanger as inputs.
+
 #### Equations ####
 ![Equations](docs/heatexchanger/eqs.png)
 
@@ -327,6 +339,8 @@ create(solver)
 ---
 
 ### Chiller ###
+The chiller class needs the following arguments as input: the id of condenser inlet, the id of condenser outlet, the id evaporator inlet, the id of evaporator outlet, the solver,  specific heat capacity of the fluid, the cooling power, the coefficient of performance, mass flow rate of the condenser, mass flow rate of the evaporator, and the status of chiller.
+
 #### Equations ####
 ![Equations](docs/chiller/eqs.png)
 
@@ -378,6 +392,8 @@ create(solver)
 ---
 
 ### FanCoil ###
+The fan coil class contains the id of heating inlet, the id of heating outlet, the id of cooling inlet, the id of cooling outlet, the id of air inlet, the id of air outlet, the id of zone which under effect, the solver, specific heat capacity of the air, specific heat capacity of the cooling fluid, specific heat capacity of the heating fluid, mass flow rate of the air, mass flow rate of the cooling, mass flow rate of the heating, status of the heating system, status of the cooling system, heat transfer coefficient of the heating coil, heat transfer coefficient of the cooling coil, surface of the heating coil, and surface of the cooling coil.
+
 #### Equations ####
 ![Equations](docs/fancoil/eqs.png)
 
@@ -421,6 +437,8 @@ create(solver)
 ---
 
 ### AirHeatExchanger ###
+Next, air heat exchanger class needs data of the id of supply inlet, the id of supply outlet, the id of exhaust inlet, the id of exhaust outlet, the solver, nominal mass flow rate of the supply, specific heat capacity of the supply, specific heat capacity of the exhaust, mass flow rate of the supply, mass flow rate of the exhaust, sensible effectiveness of 75%, sensible effectiveness of 100%, latent effectiveness of 75%, and latent effectiveness of 100% as inputs.
+
 #### Equations ####
 ![Equations](docs/airheatexchanger/eqs.png)
 
@@ -468,6 +486,8 @@ create(solver)
 ---
 
 ### Solver ###
+The solver class inputs include time step, matrix size, and initial temperature. There is a freedom of use of multiple solvers for the model in order to solve the equations in different implicit level. For instance, in this project for each water loop separate solver will be considered.
+
 #### Equations ####
 ![Equations](docs/solver/eqs.png)
 
