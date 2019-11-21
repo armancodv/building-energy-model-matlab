@@ -31,7 +31,7 @@ classdef Solver
                 end
             end
         end
-        function [obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils, constants] = iterate(obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils, constants)
+        function [obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils, constants, bridges] = iterate(obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils, constants, bridges)
             obj.iteration = obj.iteration + 1;
             obj.number_of_equations = 0;
             [obj, boilers] = obj.get_matrices(boilers);
@@ -44,6 +44,7 @@ classdef Solver
             [obj, chillers] = obj.get_matrices(chillers);
             [obj, fanCoils] = obj.get_matrices(fanCoils);
             [obj, constants] = obj.get_matrices(constants);
+            [obj, bridges] = obj.get_matrices(bridges);
             if(obj.number_of_equations~=obj.matrix_size)
                 disp('Error: The number of equations and variables should be same.');
                 fprintf('Number of Variables: %d - Number of Equations: %d', obj.matrix_size, obj.number_of_equations);
