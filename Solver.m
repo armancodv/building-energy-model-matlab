@@ -31,18 +31,19 @@ classdef Solver
                 end
             end
         end
-        function [obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils] = iterate(obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils)
+        function [obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils, constants] = iterate(obj, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils, constants)
             obj.iteration = obj.iteration + 1;
             obj.number_of_equations = 0;
-            [obj, boilers] = get_matrices(obj, boilers);
-            [obj, pipes] = get_matrices(obj, pipes);
-            [obj, radiators] = get_matrices(obj, radiators);
-            [obj, mixers] = get_matrices(obj, mixers);
-            [obj, zones] = get_matrices(obj, zones);
-            [obj, sames] = get_matrices(obj, sames);
-            [obj, heatExchangers] = get_matrices(obj, heatExchangers);
-            [obj, chillers] = get_matrices(obj, chillers);
-            [obj, fanCoils] = get_matrices(obj, fanCoils);
+            [obj, boilers] = obj.get_matrices(boilers);
+            [obj, pipes] = obj.get_matrices(pipes);
+            [obj, radiators] = obj.get_matrices(radiators);
+            [obj, mixers] = obj.get_matrices(mixers);
+            [obj, zones] = obj.get_matrices(zones);
+            [obj, sames] = obj.get_matrices(sames);
+            [obj, heatExchangers] = obj.get_matrices(heatExchangers);
+            [obj, chillers] = obj.get_matrices(chillers);
+            [obj, fanCoils] = obj.get_matrices(fanCoils);
+            [obj, constants] = obj.get_matrices(constants);
             if(obj.number_of_equations~=obj.matrix_size)
                 disp('Error: The number of equations and variables should be same.');
                 fprintf('Number of Variables: %d - Number of Equations: %d', obj.matrix_size, obj.number_of_equations);
