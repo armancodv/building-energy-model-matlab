@@ -17,6 +17,8 @@ classdef Constant
             if nargin > 0
                 obj.id = id;
                 obj.temperature = temperature;
+                obj.time_step = solver.time_step;
+                obj.matrix_size = solver.matrix_size;
 
                 obj.iteration = 0;
                 obj.number_of_equations = 1;

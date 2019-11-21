@@ -21,6 +21,8 @@ classdef Bridge
                 obj.id_bridge = id_bridge;
                 obj.solver = solver;
                 obj.solver_bridge = solver_bridge;
+                obj.time_step = solver.time_step;
+                obj.matrix_size = solver.matrix_size;
 
                 obj.iteration = 0;
                 obj.number_of_equations = 1;
