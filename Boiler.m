@@ -71,6 +71,14 @@ classdef Boiler
             obj.matrix_coefficients(obj.id_inlet) = obj.c_ti();
             obj.matrix_coefficients(obj.id_outlet) = obj.c_to();
         end
+        
+        function obj = switch_off(obj)
+            obj.status = 0;
+        end
+        
+        function obj = switch_on(obj)
+            obj.status = 1;
+        end
 
     end
 end
