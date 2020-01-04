@@ -19,12 +19,18 @@ classdef Pipe
         temperature_outlet
         temperature_zone
         mass_flow_rate
-        heat_transfer_coefficient_inner
-        heat_transfer_coefficient_outer
         thermal_conductivity
+        thermal_conductivity_fluid
         radius_inner
         radius_outer
         length
+        dynamic_viscosity_fluid
+        dynamic_viscosity_air
+        density_air
+        thermal_conductivity_air
+        specific_heat_capacity_air
+        prandtl_number_outer = 0.71;
+        gravitational_acceleration = 9.8;
         
         %calculated
         surface_inner
@@ -34,7 +40,7 @@ classdef Pipe
     end
     
     methods
-        function obj = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, mass_flow_rate,heat_transfer_coefficient_inner,heat_transfer_coefficient_outer,thermal_conductivity,radius_inner,radius_outer,length)
+        function obj = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, mass_flow_rate,thermal_conductivity,thermal_conductivity_fluid,radius_inner,radius_outer,length,dynamic_viscosity_fluid,dynamic_viscosity_air,density_air,specific_heat_capacity_air,thermal_conductivity_air)
             if nargin > 0
                 obj.id_inlet = id_inlet;
                 obj.id_outlet = id_outlet;
@@ -47,12 +53,16 @@ classdef Pipe
                 obj.specific_heat_capacity_fluid = specific_heat_capacity_fluid;
                 obj.density_fluid = density_fluid;
                 obj.mass_flow_rate = mass_flow_rate;
-                obj.heat_transfer_coefficient_inner = heat_transfer_coefficient_inner;
-                obj.heat_transfer_coefficient_outer = heat_transfer_coefficient_outer;
                 obj.thermal_conductivity = thermal_conductivity;
+                obj.thermal_conductivity_fluid = thermal_conductivity_fluid;
                 obj.radius_inner = radius_inner;
                 obj.radius_outer = radius_outer;
                 obj.length = length;
+                obj.dynamic_viscosity_fluid = dynamic_viscosity_fluid;
+                obj.dynamic_viscosity_air = dynamic_viscosity_air;
+                obj.specific_heat_capacity_air = specific_heat_capacity_air;
+                obj.thermal_conductivity_air = thermal_conductivity_air;
+                obj.density_air = density_air;
                 
                 obj.iteration = 0;
                 obj.number_of_equations = 1;
@@ -77,7 +87,64 @@ classdef Pipe
         
         % equivalent heat transfer coefficient of pipe
         function U = calculate_heat_transfer_coefficient(obj)
-            U = 1/(1/obj.heat_transfer_coefficient_inner+(obj.radius_inner*log(obj.radius_outer/obj.radius_inner))/obj.thermal_conductivity+obj.radius_inner/(obj.radius_outer*obj.heat_transfer_coefficient_outer));
+            h_in = obj.calculate_heat_transfer_coefficient_inner();
+            h_out = obj.calculate_heat_transfer_coefficient_outer();
+            U = 1/(1/h_in+(obj.radius_inner*log(obj.radius_outer/obj.radius_inner))/obj.thermal_conductivity+obj.radius_inner/(obj.radius_outer*h_out));
+        end
+        
+        % heat transfer coefficient of the inner pipe
+        function h = calculate_heat_transfer_coefficient_inner(obj)
+            nu = obj.calculate_nusselt_number_inner();
+            h = nu*obj.thermal_conductivity/(2*obj.radius_inner);
+        end
+        
+        % Nusselt number of the inner pipe
+        function nu = calculate_nusselt_number_inner(obj)
+            pr = obj.calculate_prandtl_number_inner();
+            re = obj.calculate_reynolds_number_inner();
+            nu = 4.36 + 0.086 * (re * pr * (2*obj.radius_inner) / obj.length)^1.33/( 1 + pr * (re * (2*obj.radius_inner) / obj.length)^0.83);
+        end
+
+        % Reynolds number
+        function re = calculate_reynolds_number_inner(obj)
+            re = obj.mass_flow_rate * obj.length / (pi * obj.radius_inner^2 * obj.dynamic_viscosity_fluid);
+        end
+
+        % Prandtl number
+        function pr = calculate_prandtl_number_inner(obj)
+            pr = obj.specific_heat_capacity_fluid * obj.dynamic_viscosity_fluid / obj.thermal_conductivity_fluid;
+        end
+        
+        % heat transfer coefficient of the outer pipe
+        function h = calculate_heat_transfer_coefficient_outer(obj)
+            nu = obj.calculate_nusselt_number_outer();
+            h = nu*obj.thermal_conductivity/(2*obj.radius_outer);
+        end
+        
+        % Nusselt number of the outer pipe
+        function nu = calculate_nusselt_number_outer(obj)
+            pr = obj.prandtl_number_outer();
+            ra = obj.calculate_rayleigh_number_outer();
+            nu = (0.6 + 0.387 * ra^(1/6) / (1 + (0.559 / pr)^(9/16))^(8/27))^2;
+        end
+
+        % Rayleigh number
+        function ra = calculate_rayleigh_number_outer(obj)
+            beta = obj.thermal_expansion_coefficient_outer();
+            t_p = (obj.temperature_inlet + obj.temperature_outlet) / 2;
+            ra = obj.gravitational_acceleration * beta * (t_p - obj.temperature_zone) * (obj.radius_outer * 2)^3 / (obj.dynamic_viscosity_air/obj.density_air)^2;
+        end
+
+        % Thermal Expansion Coefficient of Outer
+        function beta = thermal_expansion_coefficient_outer(obj)
+            t_p = (obj.temperature_inlet + obj.temperature_outlet) / 2;
+            t = (t_p + obj.temperature_zone) / 2;
+            beta = 1 / t;
+        end
+
+        % Prandtl number
+        function pr = calculate_prandtl_number_outer(obj)
+            pr = obj.specific_heat_capacity_air * obj.dynamic_viscosity_air / obj.thermal_conductivity_air;
         end
         
         % weight of pipe

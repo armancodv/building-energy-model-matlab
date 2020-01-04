@@ -89,7 +89,7 @@ Another element in the model is the pipe. The input values of the pipe class are
 #### Code ####
 ##### Construction ######
 ```Matlab
-pipe = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, mass_flow_rate,heat_transfer_coefficient_inner,heat_transfer_coefficient_outer,thermal_conductivity,radius_inner,radius_outer,length);
+pipe = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, density, specific_heat_capacity_fluid, density_fluid, mass_flow_rate,thermal_conductivity,thermal_conductivity_fluid,radius_inner,radius_outer,length,dynamic_viscosity_fluid,dynamic_viscosity_air,density_air,specific_heat_capacity_air,thermal_conductivity_air);
 ```
 
 | Input | Description | Type | Unit |
@@ -103,12 +103,16 @@ pipe = Pipe(id_inlet, id_outlet, id_zone, solver, specific_heat_capacity, densit
 | `specific_heat_capacity_fluid` | Specific Heat Capacity of the Fluid | `double` | *J/(K.kg)* |
 | `density_fluid` | Density of Fluid inside the Pipe | `double` | *kg/m<sup>3</sup>* |
 | `mass_flow_rate` | Mass Flow Rate of the Pipe | `double` | *kg/s* |
-| `heat_transfer_coefficient_inner` | Inner Heat Transfer Coefficient of the Pipe | `double` | *W/(m<sup>2</sup>K)* |
-| `heat_transfer_coefficient_outer` | Outer Heat Transfer Coefficient of the Pipe | `double` | *W/(m<sup>2</sup>K)* |
 | `thermal_conductivity` | Thermal Conductivity of the Pipe | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
+| `thermal_conductivity_fluid` | Thermal Conductivity of the Fluid | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 | `radius_inner` | Inner Radius of the Pipe | `double` | *m* |
 | `radius_outer` | Outer Radius of the Pipe | `double` | *m* |
 | `length` | Length of the Pipe | `double` | *m* |
+| `dynamic_viscosity_fluid` | Dynamic Viscosity of the Fluid | `double` | *N·s/m<sup>2</sup>* |
+| `dynamic_viscosity_air` | Dynamic Viscosity of the Air | `double` | *N·s/m<sup>2</sup>* |
+| `density_air` | Density of the Air | `double` | *kg/m<sup>3</sup>* |
+| `specific_heat_capacity_air` | Specific Heat Capacity of the Air | `double` | *J/(K.kg)* |
+| `thermal_conductivity_air` | Thermal Conductivity of the Air | `double` | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 
 ##### Create Matrix #####
 ```Matlab
