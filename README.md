@@ -485,6 +485,43 @@ create(solver)
 
 ---
 
+### Constant ###
+
+
+#### Equations ####
+
+#### Variables ####
+
+| Variable | Description |
+| --- | --- |
+
+| Subscript | Description |
+| --- | --- |
+
+#### Code ####
+##### Construction ######
+```Matlab
+constant = Constant(id, solver, temperature);
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id` | Element ID | `integer` | - |
+| `solver` | Class of the Solver | `solver` | - |
+| `temperature` | The Constant Temperature | `double` | K |
+
+
+##### Create Matrix #####
+```Matlab
+create(solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the Solver | `solver` | - |
+
+---
+
 ### Solver ###
 The solver class inputs include time step, matrix size, and initial temperature. There is a freedom of use of multiple solvers for the model in order to solve the equations in different implicit level. For instance, in this project for each water loop separate solver will be considered.
 
