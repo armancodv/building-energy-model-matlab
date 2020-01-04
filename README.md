@@ -508,6 +508,34 @@ Solver(time_step, matrix_size, initial_temperature)
 [solver, boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils] = solver.iterate(boilers, pipes, radiators, mixers, zones, sames, heatExchangers, chillers, fanCoils);
 ```
 
+---
+
+### Bridge ###
+This class connects two different elements in different solvers, which has same temperatures.
+
+#### Code ####
+##### Construction ######
+```Matlab
+bridge = Bridge(id, id_bridge, solver, solver_bridge);
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `id` | Element ID in the first solver | `integer` | - |
+| `id_bridge` | Element ID in the second solver | `integer` | - |
+| `solver` | Class of the first Solver | `solver` | - |
+| `solver_bridge` | Class of the second Solver | `solver` | - |
+
+
+##### Create Matrix #####
+```Matlab
+create(solver)
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `solver` | Class of the first Solver | `solver` | - |
+
 ## License ##
 GNU GENERAL PUBLIC LICENSE
 Version 2, June 1991
