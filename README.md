@@ -4,7 +4,7 @@ It is a small software which is developed by MATLAB for modeling the energy syst
 ## Method of Solution ##
 In this code, the temperatures are considered variables of the problem, which are solved implicitly by solving a system of linear equations based on energy equations of each element.
 
-## Classes ##
+## Elements Classes ##
 
 ### Boiler ###
 The boiler contains an inlet fluid pipe, an outlet fluid pipe, a fluid tank which is heated up, and the rest. The class of boiler receives input values including the id of the inlet, the id of outlet, the solver, the specific heat capacity of the rest, the mass of the rest, specific heat capacity of the fluid, mass of the fluid, the boiler power, the mass flow rate, and the status. The inlet and outlet should be outlet and inlet of pipes which are connected to the boiler respectively. The solver is the class of the solver that is used. Next, there are specific heat capacity and mass of the boiler except containing fluid. Then, there are those of the fluid. The next argument is the power of the boiler. The mass flow rate also should be given as an input value. The status works as a switch in the boiler which can be controlled by the smart controller in the next stages of the project.
@@ -520,7 +520,35 @@ create(solver)
 | --- | --- | --- | --- |
 | `solver` | Class of the Solver | `solver` | - |
 
----
+## Controllers Classes ##
+
+### SetpointController ###
+
+#### Code ####
+##### Construction ######
+```Matlab
+setpointController = SetpointController(minimum, maximum, mode, status);
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `minimum` | Minimum Temperature | `double` | K |
+| `minimum` | Maximum Temperature | `double` | K |
+| `mode` | Heating (=1) or Cooling (=2) Modes | `integer` | - |
+| `status` | Status of the Controller | `boolean` | - |
+
+##### Check #####
+```Matlab
+status = check(obj, temperature);
+```
+
+| Input | Description | Type | Unit |
+| --- | --- | --- | --- |
+| `temperature` | Temperature | `double` | K |
+| `status` | Status of the Controller | `boolean` | - |
+
+
+## Solvers Classes ##
 
 ### Solver ###
 The solver class inputs include time step, matrix size, and initial temperature. There is a freedom of use of multiple solvers for the model in order to solve the equations in different implicit level. For instance, in this project for each water loop separate solver will be considered.
