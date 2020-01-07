@@ -83,7 +83,7 @@ Another element in the model is the pipe. The input values of the pipe class are
 | *g* | Gravitational Acceleration | m/s<sup>2</sup> |
 | *&‌beta;* | Coefficient of Volume Expansion | 1/K |
 | *&‌nu;* | Kinematic Viscosity | m<sup>2</sup>/s |
-| *&‌mu;* | Dynamic Viscosity | kg·m<sub>−1<sub>·s<sub>−1<sub> |
+| *&‌mu;* | Dynamic Viscosity | kg·m<sup>−1</sup>·s<sup>−1</sup> |
 
 
 | Subscript | Description |
