@@ -76,6 +76,15 @@ Another element in the model is the pipe. The input values of the pipe class are
 | *k* | Thermal Conductivity | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 | *L* | Length | *m* |
 | *U* | equivalent heat transfer coefficient | *W/(m<sup>2</sup>K)* |
+| *Nu* | Nusselt Number | - |
+| *Re* | Reynolds Number | - |
+| *Pr* | Prandtl Number | - |
+| *Ra* | Rayleigh Number | - |
+| *g* | Gravitational Acceleration | m/s<sup>2</sup> |
+| *&‌beta;* | Coefficient of Volume Expansion | 1/K |
+| *&‌nu;* | Kinematic Viscosity | m<sup>2</sup>/s |
+| *&‌mu;* | Dynamic Viscosity | kg·m<sub>−1<sub>·s<sub>−1<sub> |
+
 
 | Subscript | Description |
 | --- | --- |
