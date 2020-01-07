@@ -73,6 +73,7 @@ Another element in the model is the pipe. The input values of the pipe class are
 | --- | --- | --- |
 | *h* | Heat Transfer Coefficient | *W/(m<sup>2</sup>K)* |
 | *r* | Radius | *m* |
+| *D* | Diameter | *m* |
 | *k* | Thermal Conductivity | *W.m<sup>-1</sup>.K<sup>-1</sup>* |
 | *L* | Length | *m* |
 | *U* | equivalent heat transfer coefficient | *W/(m<sup>2</sup>K)* |
