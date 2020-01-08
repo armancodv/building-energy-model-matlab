@@ -107,7 +107,7 @@ classdef Pipe
 
         % Reynolds number
         function re = calculate_reynolds_number_inner(obj)
-            re = obj.mass_flow_rate * obj.length / (pi * obj.radius_inner^2 * obj.dynamic_viscosity_fluid);
+            re = 2 * obj.mass_flow_rate / (pi * obj.radius_inner * obj.dynamic_viscosity_fluid);
         end
 
         % Prandtl number
